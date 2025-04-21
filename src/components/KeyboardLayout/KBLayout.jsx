@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 
-export default function TypingTestKeyboard() {
+export default function TypingTestKeyboard({isFullscreen}) {
   const [pressedKeys, setPressedKeys] = useState({});
 
   // Simplified keyboard layout focused on typing test needs
@@ -32,6 +32,21 @@ export default function TypingTestKeyboard() {
   useEffect(() => {
     const handleKeyDown = (event) => {
       const key = keyMapping[event.code];
+
+      // To prevent the default behaviour of scrolling in browsers
+      if (event.code === 'Space') {
+        event.preventDefault();
+      }
+
+      // To prevent the default behaviour of Alt key
+      if (event.code === 'AltLeft' || event.code == 'AltRight') {
+        event.preventDefault();
+      }
+      
+      // Also prevent default behavior for Tab key
+      if (event.code === 'Tab') {
+        event.preventDefault();
+      }
       if (key) {
         setPressedKeys(prev => ({ ...prev, [key]: true }));
       }
@@ -76,7 +91,10 @@ export default function TypingTestKeyboard() {
     }
   };
 
-  return (
+  return isFullscreen === true ? (
+    <></>
+  ) :  (
+    
     <div className="bg-[#181C22] font-mono p-6 rounded-lg shadow-xl mx-auto w-[700px] mb-[30px] ">
       <div className="flex flex-col gap-1 mx-auto">
         {keyboardLayout.map((row, rowIndex) => (
