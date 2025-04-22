@@ -1,12 +1,11 @@
 import React from "react";
 import "../App.css";
-import Navbar from "../component/Navbar";
-import Features from "../component/Features"
-import Footer from "../component/Footer";
+import Navbar from "../components/Navbar";
+import Features from "../components/Features"
+import Footer from "../components/Footer";
 const Home = () => {
   return (
     <>
-      <Navbar />
       <div className="h-[88vh] bg-[#181C22] flex justify-center items-center font-mono text-white">
         <div className="w-[60vw] px-8 typewriter">
           <h1 className="text-7xl font-bold py-5 ">
@@ -30,7 +29,6 @@ const Home = () => {
         </div>
       </div>
       <Features />
-      <Footer />
     </>
   );
 };
