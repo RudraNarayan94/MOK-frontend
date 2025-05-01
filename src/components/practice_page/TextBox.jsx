@@ -48,7 +48,7 @@ export default function TextBox({ isFullscreen }) {
       const cursorPos = cursorRef.current.getBoundingClientRect();
       const container = textBoxRef.current.getBoundingClientRect();
 
-      if (cursorPos.bottom > container.bottom - 20) {
+      if (cursorPos.bottom > container.bottom) {
         textBoxRef.current.scrollTop +=
           cursorPos.bottom - container.bottom + 40;
       } else if (cursorPos.top < container.top) {
@@ -121,6 +121,7 @@ export default function TextBox({ isFullscreen }) {
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     currentPosition,
     isTyping,
@@ -144,7 +145,7 @@ export default function TextBox({ isFullscreen }) {
         ref={textBoxRef}
         className={`scrollbar-hidden text-box w-[80%] bg-[#00000039] text-2xl/9 font-medium ${
           isFullscreen ? "h-[300px]" : "h-[200px]"
-        } p-5 rounded-2xl m-[30px] mt-0 overflow-y-scroll relative tracking-wide leading-relaxed`}
+        } p-5 rounded-2xl m-[30px] mt-0 overflow-y-scroll relative tracking-wider leading-loose`}
         style={{ overflowY: "scroll", overflowX: "hidden" }}
       >
         <div className="relative">
@@ -161,7 +162,7 @@ export default function TextBox({ isFullscreen }) {
                     ) : (
                       char
                     )}
-                    <span className="absolute w-[3px] left-0 top-0 bg-[orange] custom-blink" />
+                    <span className="absolute left-0 top-0 h-full w-[2px] bg-orange-500 animate-blink" />
                   </span>
                 </span>
               );
