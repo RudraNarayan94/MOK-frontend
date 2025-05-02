@@ -8,11 +8,9 @@ function App() {
 
   return (
     <>
-    {/* <Home /> */}
     <Navbar />
     <Outlet />
     <Footer />
-    {/* <h1 className='text-2xl'>MOK</h1> */}
     </>
   )
 }

@@ -1,8 +1,7 @@
 import React from "react";
 import "../App.css";
-import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 import Features from "../components/Features"
-import Footer from "../components/Footer";
 const Home = () => {
   return (
     <>
@@ -16,8 +15,8 @@ const Home = () => {
             detailed progress tracking.
           </p>
           <div className="flex justify-center gap-16 py-10">
-            <button className="border rounded-md px-4 py-2 text-xl bg-[orange] hover:bg-[#ff8400e7] ">Practice</button>
-            <button className="border rounded-md px-3 py-2 text-xl hover:bg-[#a4a0a01b] ">Compete</button>
+            <button className="border rounded-md px-4 py-2 text-xl bg-[orange] hover:bg-[#ff8400e7] "><Link to='/practice'>Practice</Link></button>
+            <button className="border rounded-md px-3 py-2 text-xl hover:bg-[#a4a0a01b] "><Link to='/multiplayer'>Compete</Link></button>
           </div>
         </div>
         <div className="kb-container">
