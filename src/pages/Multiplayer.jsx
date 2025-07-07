@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 function Multiplayer() {
   return (
-    <div>
+    <div className="bg-[#181C22] ">
       <Outlet />
     </div>
   );
