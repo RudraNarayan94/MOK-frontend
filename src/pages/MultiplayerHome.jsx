@@ -1,26 +1,25 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { JoinRoomContext } from "./Multiplayer";
 
 function MultiplayerHome() {
-  const [joinRoom, setJoinRoom] = useState(false);
-  const [roomId, setRoomId] = useState({id:""});
-  function handleChange(e){
-    // setRoomId(e.target.value)
-    setRoomId({...roomId,[e.target.name]:e.target.value})
+  const { joinRoom, setJoinRoom } = useContext(JoinRoomContext);
+  const [roomId, setRoomId] = useState({ id: "" });
+  function handleChange(e) {
+    setRoomId({ ...roomId, [e.target.name]: e.target.value });
   }
-  // console.log(roomId);
-
 
   return (
-    <>
+    <div className="overflow-hidden">
       <header className="font-mono text-center text-white ">
-        <h1 className="text-3xl underline ">Multiplayer</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos vel
-          quidem sed doloribus sequi
+        <h1 className="text-5xl mb-3 p-3 font-semibold bg-gradient-to-r from-orange-400 to-pink-600 text-transparent bg-clip-text ">
+          Multiplayer Arena
+        </h1>
+        <p className="text-xl font-semibold underline underline-offset-2">
+          Real-Time Typing, Real-Time Fun!
         </p>
       </header>
-      <div className="flex min-h-[80vh] w-screen font-mono text-white overflow-hidden ">
+      <div className="flex min-h-[70vh] w-screen font-mono text-white overflow-hidden ">
         <section className="w-[50%] flex flex-col items-center justify-center text-center p-[20px] ">
           <h1 className="text-6xl leading-tight text-orange-500 font-semibold ">
             Sync Your Speed
@@ -58,7 +57,7 @@ function MultiplayerHome() {
                   placeholder="Enter room code..."
                   onChange={handleChange}
                   required
-                  className="md:w-[50vh] w-[40vh] rounded-lg p-3 font-semibold outline-none text-orange-500 focus:ring-2 focus:ring-black "
+                  className="md:w-[50vh] w-[40vh] rounded-lg p-3 font-semibold outline-none text-orange-500 focus:ring-2 focus:ring-[orange] "
                 />
               </div>
               <button className="p-3 bg-[orange] rounded-lg w-[20vh] md:w-24 hover:bg-orange-500 ">
@@ -75,7 +74,7 @@ function MultiplayerHome() {
           />
         </section>
       </div>
-    </>
+    </div>
   );
 }
 
