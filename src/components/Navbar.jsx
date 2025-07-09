@@ -5,7 +5,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 const Navbar = () => {
   
   // eslint-disable-next-line no-unused-vars
-  const [user,setUser] = useState(false);
+  const [user,setUser] = useState(true);
   // eslint-disable-next-line no-unused-vars
   const [userInitial, setUserInitial] = useState("G");
   const nav = useNavigate();
@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="h-[80px] backdrop-blur- bg-[#181C22] flex items-center justify-between py-7 px-10 text-slate-300 font-mono ">
+      <div className="h-[80px] z-10 sticky top-0 bg-[#181C22] flex items-center justify-between py-7 px-10 text-slate-300 font-mono ">
         {/* Logo */}
 
         <Link to="/">
