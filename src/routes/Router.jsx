@@ -7,6 +7,7 @@ import Multiplayer from "../pages/Multiplayer.jsx";
 import CreateRoom from "../pages/CreateRoom.jsx";
 import Login from "../pages/Login.jsx";
 import MultiplayerHome from "../pages/MultiplayerHome.jsx";
+import Dashboard from "../pages/Dashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
-      }
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard />,
+      },
     ],
   },
 ]);
