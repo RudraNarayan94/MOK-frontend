@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const blogs = [
   {
@@ -60,8 +60,7 @@ export default function SolidBento() {
               : index === 3
               ? "md:col-span-1 md:row-span-3"
               : "md:col-span-1 md:row-span-1 lg:row-span-2"
-          }`}
-        >
+          }`}>
           <img
             src={blog.image}
             alt={blog.title}
@@ -69,7 +68,9 @@ export default function SolidBento() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
           <div className="relative flex h-full w-full flex-col justify-end p-6 text-white">
-            <h2 className="mb-2 text-2xl font-bold leading-tight">{blog.title}</h2>
+            <h2 className="mb-2 text-2xl font-bold leading-tight">
+              {blog.title}
+            </h2>
             <div className="flex items-center space-x-2">
               <img
                 src={blog.avatar}
