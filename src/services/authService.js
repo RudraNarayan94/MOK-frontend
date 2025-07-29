@@ -27,7 +27,7 @@ const authService = {
   login: async (credentials) => {
     try {
       const loginData = {
-        identifier: credentials.login_field, // ← either username or email
+        login_field: credentials.login_field, // ← either username or email
         password: credentials.password,
       };
 
