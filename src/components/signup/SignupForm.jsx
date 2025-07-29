@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const initialState = {
   username: "",
@@ -24,18 +24,18 @@ function reducer(state, action) {
 
 const SignupForm = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [message, setMessage] = useState({type:"error",text:"hii"});
+  const [message, setMessage] = useState({ type: "error", text: "hii" });
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-      if (message.text) {
-        if (message.type === "error") {
-          toast.error(message.text);
-        } else if (message.type === "success") {
-          toast.success(message.text);
-        }
+    if (message.text) {
+      if (message.type === "error") {
+        toast.error(message.text);
+      } else if (message.type === "success") {
+        toast.success(message.text);
       }
-    }, [message]);
+    }
+  }, [message]);
 
   const handleChange = (e) => {
     dispatch({
@@ -103,25 +103,22 @@ const SignupForm = () => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-3 text-gray-500 hover:text-[orange]"
-            >
+              className="absolute right-3 top-3 text-gray-500 hover:text-[orange]">
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
           <button
             type="submit"
-            className="w-full p-3 text-white bg-black rounded-lg hover:bg-[#0e0d0d] hover:text-[orange] transition duration-200"
-          >
+            className="w-full p-3 text-white bg-black rounded-lg hover:bg-[#0e0d0d] hover:text-[orange] transition duration-200">
             Sign Up
           </button>
         </form>
-        
+
         <p className="text-center text-[15px] text-[black]">
           Already have an account?{" "}
           <Link
             to="/login"
-            className="text-white underline hover:underline-offset-2"
-          >
+            className="text-white underline hover:underline-offset-2">
             Login here
           </Link>
         </p>
