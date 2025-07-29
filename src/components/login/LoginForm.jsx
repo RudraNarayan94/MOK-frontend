@@ -59,6 +59,7 @@ const LoginForm = () => {
         err?.errors?.general?.[0] ||
         err?.errors?.login_field?.[0] ||
         err?.errors?.password?.[0] ||
+        err?.detail ||
         "Login failed. Try again.";
       setMessage({ type: "error", text: msg });
     }
@@ -103,6 +104,15 @@ const LoginForm = () => {
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
+
+          <p className="text-right text-[14px]">
+            <Link
+              to="/forgot-password"
+              className="text-white hover:underline hover:text-[orange]">
+              Forgot password?
+            </Link>
+          </p>
+
           <button
             type="submit"
             className="w-full p-3 text-white bg-black rounded-lg hover:bg-[#0e0d0d] hover:text-[orange] transition duration-200">
