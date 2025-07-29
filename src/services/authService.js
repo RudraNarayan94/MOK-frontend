@@ -98,11 +98,11 @@ const authService = {
     }
   },
   sendPasswordResetEmail: async (email) => {
-    return axios.post(`${API}/send_reset_password_email/`, { email });
+    return axios.post(`${API_BASE_URL}/send_reset_password_email/`, { email });
   },
 
   resetPassword: async ({ uid, token, password, password2 }) => {
-    return axios.post(`${API}/reset_password/${uid}/${token}/`, {
+    return axios.post(`${API_BASE_URL}/reset_password/${uid}/${token}/`, {
       password,
       password2,
     });

@@ -53,7 +53,7 @@ const LoginForm = () => {
 
       setMessage({ type: "success", text: "Login successful!" });
       dispatch({ type: "RESET" });
-      navigate("/profile");
+      navigate("/dashboard");
     } catch (err) {
       const msg =
         err?.errors?.general?.[0] ||
