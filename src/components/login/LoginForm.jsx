@@ -1,10 +1,9 @@
 import { useReducer, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
+import authService from "../../services/authService";
 
 const initialState = {
   identifier: "",
@@ -24,19 +23,17 @@ function reducer(state, action) {
 
 const LoginForm = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [message, setMessage] = useState({type:"success",text:"hii"});
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const [message, setMessage] = useState({ type: "", text: "" });
 
   useEffect(() => {
     if (message.text) {
-      if (message.type === "error") {
-        toast.error(message.text);
-      } else if (message.type === "success") {
-        toast.success(message.text);
-      }
+      if (message.type === "error") toast.error(message.text);
+      if (message.type === "success") toast.success(message.text);
     }
   }, [message]);
-  
 
   const handleChange = (e) => {
     dispatch({
@@ -49,25 +46,34 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:5000/login", state);
-      setMessage(response.data.message);
+      await authService.login({
+        login_field: state.identifier,
+        password: state.password,
+      });
+
+      setMessage({ type: "success", text: "Login successful!" });
       dispatch({ type: "RESET" });
-    // eslint-disable-next-line no-unused-vars
-    } catch (error) {
-      setMessage("Login failed. Please try again.");
+      navigate("/profile");
+    } catch (err) {
+      const msg =
+        err?.errors?.general?.[0] ||
+        err?.errors?.login_field?.[0] ||
+        err?.errors?.password?.[0] ||
+        "Login failed. Try again.";
+      setMessage({ type: "error", text: msg });
     }
   };
 
   return (
     <div className="md:w-[650px] h-[75vh] rounded-2xl flex">
-      {/* Image Section */}
       <div className="hidden md:block p-8 bg-[url(/signup_image.png)] bg-[contain] bg-center bg-no-repeat bg-[#FAEBCE] w-[60%] rounded-e-2xl text-[orange] relative order-2 ">
-        <h1 className="absolute bottom-[45px] left-[55px] text-4xl font-bold ">Welcome Back!</h1>
+        <h1 className="absolute bottom-[45px] left-[55px] text-4xl font-bold ">
+          Welcome Back!
+        </h1>
       </div>
 
-      {/* Form Section */}
       <div className="bg-[#ff9100] w-[400px] md:max-w-[400px] md:rounded-s-2xl md:rounded-none rounded-2xl">
-        <h2 className="text-2xl text-[white] font-bold text-center underline underline-offset-4 pt-16 p-9">
+        <h2 className="text-2xl text-white font-bold text-center underline underline-offset-4 pt-16 p-9">
           Login
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4 p-4 text-[orange]">
@@ -93,25 +99,22 @@ const LoginForm = () => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-3 text-gray-500 hover:text-[orange]"
-            >
+              className="absolute right-3 top-3 text-gray-500 hover:text-[orange]">
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
           <button
             type="submit"
-            className="w-full p-3 text-white bg-black rounded-lg hover:bg-[#0e0d0d] hover:text-[orange] transition duration-200"
-          >
+            className="w-full p-3 text-white bg-black rounded-lg hover:bg-[#0e0d0d] hover:text-[orange] transition duration-200">
             Login
           </button>
         </form>
-        
-        <p className="text-center text-[15px] text-[black]">
-          Don't have an account?{' '}
+
+        <p className="text-center text-[15px] text-black">
+          Don't have an account?{" "}
           <Link
             to="/signup"
-            className="text-white underline hover:underline-offset-2"
-          >
+            className="text-white underline hover:underline-offset-2">
             Sign up
           </Link>
         </p>
